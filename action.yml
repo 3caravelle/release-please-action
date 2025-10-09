@@ -1,4 +1,4 @@
-name: 'release-please-action'
+name: '3c-release-please-action'
 description: 'automated releases based on conventional commits'
 author: Google LLC
 inputs:
@@ -18,6 +18,12 @@ inputs:
     description: branch to open pull release PR against (detected by default)
     required: false
     default: ''
+  git-username:
+    description: 'the username to use when pushing to git'
+    required: true
+    git-password:
+      description: 'the password to use when pushing to git'
+      required: true
   config-file:
     description: 'where can the config file be found in the project?'
     required: false

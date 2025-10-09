@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import * as core from '@actions/core';
-import {GitHub, Manifest, CreatedRelease, PullRequest, VERSION} from 'release-please';
+import {GitHub, Manifest, CreatedRelease, PullRequest, VERSION} from '@3caravelle/release-please';
 
 const DEFAULT_CONFIG_FILE = 'release-please-config.json';
 const DEFAULT_MANIFEST_FILE = '.release-please-manifest.json';
@@ -34,6 +34,8 @@ interface ActionInputs {
   githubApiUrl: string;
   githubGraphqlUrl: string;
   configFile?: string;
+  gitUsername?: string;
+  gitPassword?: string;
   manifestFile?: string;
   proxyServer?: string;
   targetBranch?: string;
@@ -53,6 +55,8 @@ function parseInputs(): ActionInputs {
     releaseType: getOptionalInput('release-type'),
     path: getOptionalInput('path'),
     repoUrl: core.getInput('repo-url') || process.env.GITHUB_REPOSITORY || '',
+    gitUsername: core.getInput('git-username'),
+    gitPassword: core.getInput('git-password'),
     targetBranch: getOptionalInput('target-branch'),
     configFile: core.getInput('config-file') || DEFAULT_CONFIG_FILE,
     manifestFile: core.getInput('manifest-file') || DEFAULT_MANIFEST_FILE,
@@ -169,6 +173,8 @@ function getGitHubInstance(inputs: ActionInputs, fetchOverride?: any): Promise<G
     apiUrl: inputs.githubApiUrl,
     graphqlUrl: inputs.githubGraphqlUrl,
     token: inputs.token,
+    gitUsername: inputs.gitUsername,
+    gitPassword: inputs.gitPassword,
     defaultBranch: inputs.targetBranch,
     fetch: fetchOverride,
   };
