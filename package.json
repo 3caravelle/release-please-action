@@ -1,5 +1,5 @@
 {
-  "name": "release-please-action",
+  "name": "@3caravelle/release-please-action",
   "private": true,
   "version": "4.3.0",
   "description": "automated releases based on conventional commits",
