@@ -9,7 +9,7 @@ permissions:
   repository-projects: write
 name: release-please
 env:
-  ACTION_NAME: release-please-action
+  ACTION_NAME: 3c-release-please-action
 jobs:
   build:
     runs-on: ubuntu-latest
