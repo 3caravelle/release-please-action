@@ -92,6 +92,23 @@ describe('release-please-action', () => {
     sandbox.restore();
   });
   describe('configuration', () => {
+    it('passes Git credentials to the release-please client', async () => {
+      restoreEnv = mockInputs({
+        'git-username': 'test-user',
+        'git-password': 'test-password',
+        'skip-github-release': 'true',
+        'skip-github-pull-request': 'true',
+      });
+      const createStub = sandbox.stub(GitHub, 'create').resolves({} as GitHub);
+
+      await action.main(fetch);
+
+      sinon.assert.calledOnce(createStub);
+      sinon.assert.calledWith(
+        createStub,
+        sinon.match({gitUsername: 'test-user', gitPassword: 'test-password'})
+      );
+    });
     let fakeManifest: sinon.SinonStubbedInstance<Manifest>;
     describe('with release-type', () => {
       let fromConfigStub: sinon.SinonStub;
@@ -581,3 +598,4 @@ describe('release-please-action', () => {
     });
   });
 });
+

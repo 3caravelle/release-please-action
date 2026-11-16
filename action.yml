@@ -21,9 +21,9 @@ inputs:
   git-username:
     description: 'the username to use when pushing to git'
     required: true
-    git-password:
-      description: 'the password to use when pushing to git'
-      required: true
+  git-password:
+    description: 'the password to use when pushing to git'
+    required: true
   config-file:
     description: 'where can the config file be found in the project?'
     required: false
@@ -83,3 +83,4 @@ inputs:
 runs:
   using: 'node20'
   main: 'dist/index.js'
+
